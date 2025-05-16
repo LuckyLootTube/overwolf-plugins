@@ -47,6 +47,7 @@
                     "enable": true,
                     "overlay_mode": "AlwaysOnTop"
                 },
+                "topmost": true,
                 "override_on_top": true,
                 "allow_local_file_access": true,
                 "resizable": false,

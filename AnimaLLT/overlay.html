@@ -101,6 +101,24 @@
   .then(() => console.log('RPC fired (no-cors, opaque)'))
   .catch(err => console.error('⚠️ RPC error:', err));
   }
+
+  // Helper: bring *this* overlay window to front
+    function bringOverlayToFront(callback) {
+      overwolf.windows.getCurrentWindow(res => {
+        if (res.status === 'success') {
+          overwolf.windows.bringToFront(res.window.id, bfRes => {
+            if (bfRes.status !== 'success') {
+              console.error('bringToFront failed:', bfRes);
+            }
+            callback();
+          });
+        } else {
+          console.error('getCurrentWindow failed:', res);
+          callback();
+        }
+      });
+    }
+
     // 2) CONFIG + preload
     const CONFIG = {
       rewardTitle: 'AnimaLLT',
@@ -281,25 +299,26 @@
       }
     }
     
-    // Modify event listener to stagger multiple animations
     window.client.on('Twitch.RewardRedemption', msg => {
-      try {
-        console.log("🏷️ raw redemption message:", msg);
-        // Check if the message has the expected structure
-        const rewardTitle = msg?.data?.reward?.title || msg?.data?.title;
-        // Grab the real Twitch username from the payload:
-        const viewer = msg.data.user_name || msg.data.user_login || 'a viewer';
-        
-        if (rewardTitle === CONFIG.rewardTitle && !isProcessingReward) {
-          isProcessingReward = true;
-          console.log('✨ Reward redeemed by', viewer, ':', rewardTitle);
-          // include the viewer’s name in your rich presence
-          updateDiscordPresence(
-         `🎉 ${viewer} claimed ${rewardTitle}!`,
-         `Thanks, ${viewer}!`
+    try {
+      console.log("🏷️ raw redemption message:", msg);
+
+      // Extract the reward title and viewer name
+      const rewardTitle = msg?.data?.reward?.title || msg?.data?.title;
+      const viewer = msg.data.user_name || msg.data.user_login || 'a viewer';
+
+      if (rewardTitle === CONFIG.rewardTitle && !isProcessingReward) {
+        isProcessingReward = true;
+        console.log('✨ Reward redeemed by', viewer, ':', rewardTitle);
+
+        // Update Discord Rich Presence
+        updateDiscordPresence(
+          `🎉 ${viewer} claimed ${rewardTitle}!`,
+          `Thank you, ${viewer}!`
         );
 
-          // Directly show image(s) without flash
+        // Bundle your showImage calls into a function
+        function triggerImages() {
           showImage();
           if (CONFIG.showMultipleImages) {
             setTimeout(() => showImage(), CONFIG.staggerDelay);
@@ -308,15 +327,36 @@
           setTimeout(() => {
             isProcessingReward = false;
             console.log('🔄 Resetting after reward');
-            //updateDiscordPresence('Idle', 'Waiting for rewards');
-          }, 10); //0.01 seconds
-          
+            // Optionally reset presence:
+            // updateDiscordPresence('Idle', 'Waiting for rewards');
+          }, 10);
         }
-      } catch (error) {
-        console.error('Error handling reward redemption:', error);
-        isProcessingReward = false; // Reset flag in case of error
+
+        // 1) Get THIS overlay’s window ID
+        overwolf.windows.getCurrentWindow(winRes => {
+          if (winRes.status === 'success') {
+            const winId = winRes.window.id;
+
+            // 2) Bring this overlay to the front, then trigger images
+            overwolf.windows.bringToFront(winId, bfRes => {
+              if (bfRes.status !== 'success') {
+                console.error('bringToFront failed:', bfRes);
+              }
+              triggerImages();
+            });
+
+          } else {
+            console.error('getCurrentWindow failed:', winRes);
+            // Fallback
+            triggerImages();
+          }
+        });
       }
-    });
+    } catch (error) {
+      console.error('Error handling reward redemption:', error);
+      isProcessingReward = false;
+    }
+  });
 
     // Add Overwolf-specific optimizations
     window.addEventListener('load', () => {
