@@ -3,6 +3,8 @@
 
 **AnimaLLT Overlay** is a custom Overwolf WebApp that listens for a specific Twitch Channel Point redemption and displays a fun, full-screen animation — no OBS or browser source required.
 
+Built by LuckyLootTube with the help of ChatGPT
+
 ---
 
 ## Features
@@ -65,9 +67,7 @@ cd AnimaLLT-Overlay
 
 To show a custom status on Discord when a reward is claimed:
 
-1. Copy or move the `discord-rpc-plugin/` folder from this repo.
-2. In Overwolf **Developer Options**, click **Load Unpacked App** and select `discord-rpc-plugin/`.
-3. Ensure **Discord** is running and logged in.
+1. Make sure you run DiscordRPCPlugin.exe as a local server
 
 The plugin will update your status to:
 
@@ -96,4 +96,4 @@ Thanks <Username> for redeeming!
 
 ## License
 
-This project is provided "as is" under the MIT License. See [LICENSE](LICENSE) for details.
+From LuckyLootTube with love. <3
