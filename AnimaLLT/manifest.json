@@ -1,0 +1,85 @@
+{
+    "manifest_version": 1,
+    "type": "WebApp",
+    "meta": {
+        "name": "AnimaLLT",
+        "author": "LuckyLootTube",
+        "version": "1.0.0.0",
+        "minimum-overwolf-version": "0.170.0",
+        "minimum-gep-version": "0.170.0",
+        "description": "A cute animal overlay for Twitch rewards.",
+        "dock_button_title": "AnimaLLT",
+        "icon": "icons/icon128.png",
+        "icon_gray": "icons/icon48.png",
+        "launcher_icon": "icons/icon128.png",
+        "splash_image": "icons/icon128.png",
+        "window_icon": "icons/icon48.png"
+    },
+    "permissions": [
+        "Twitch",
+        "launchExternalFile"
+    ],
+    "external": [
+        {
+            "id": "discordRpcServer",
+            "path": "DiscordRpcServer.exe",
+            "startup_arg": ""
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "data": {
+        "start_window": "overlayDesktop",
+        "windows": {
+            "overlayDesktop": {
+                "optimize_accelerate_rendering": true,
+                "hardware_acceleration": true,
+                "file": "overlay.html",
+                "transparent": true,
+                "clickthrough": true,
+                "show_in_taskbar": false,
+                "native_window": false,
+                "desktop_only": true,
+                "desktop_overlay": {
+                    "enable": true,
+                    "overlay_mode": "AlwaysOnTop"
+                },
+                "override_on_top": true,
+                "allow_local_file_access": true,
+                "resizable": false,
+                "size": {
+                    "width": 1920,
+                    "height": 1200
+                }
+            },
+            "overlayGame": {
+                "optimize_accelerate_rendering": true,
+                "hardware_acceleration": true,
+                "file": "overlay.html",
+                "transparent": true,
+                "clickthrough": true,
+                "show_in_taskbar": false,
+                "native_window": false,
+                "in_game_only": true,
+                "desktop_overlay": {
+                    "enable": true,
+                    "overlay_mode": "AlwaysOnTop"
+                },
+                "topmost": true,
+                "override_on_top": true,
+                "allow_local_file_access": true,
+                "resizable": false,
+                "size": {
+                    "width": 1920,
+                    "height": 1200
+                }
+            }
+        }
+    },
+    "events": {
+        "onAppLaunchTriggered": "background.js"
+    }
+}

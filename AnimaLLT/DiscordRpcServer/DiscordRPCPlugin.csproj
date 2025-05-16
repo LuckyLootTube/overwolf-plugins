@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Produce an .exe -->
+    <OutputType>Exe</OutputType>
+    <!-- Pick any supported Windows runtime, e.g. net7.0 -->
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <!-- if you need Windows-specific APIs -->
+    <UseWindowsForms>false</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Lachee's Discord RPC -->
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+    <!-- JSON serialization -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+</Project>

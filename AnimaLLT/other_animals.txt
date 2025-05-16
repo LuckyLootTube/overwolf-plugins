@@ -1,0 +1,71 @@
+    HEAD
+    
+    <!-- <link rel="preload" as="image" href="assets/animals/hippopotamus.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/alligator.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/leopard.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/chicken.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/cow.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/deer.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/duck.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/frog.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/fox.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/giraffe.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/horse.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/lion.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/monkey.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/panda.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/pig.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/sheep.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/tiger.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/wolf.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/zebra.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/raccoon.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/poodle.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/parrot.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/redpanda.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/otter.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/sloth.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/capybara.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/bat.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/kangaroo.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/armadillo.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/octopus.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/fish.webp"> -->
+    <!-- <link rel="preload" as="image" href="assets/animals/squirel.webp"> -->
+
+
+
+    CONFIG
+
+    'assets/animals/hippopotamus.webp',
+    'assets/animals/alligator.webp',
+    'assets/animals/leopard.webp',
+    'assets/animals/chicken.webp',
+    'assets/animals/cow.webp',
+    'assets/animals/deer.webp',
+    'assets/animals/duck.webp',
+    'assets/animals/frog.webp',
+    'assets/animals/fox.webp',
+    'assets/animals/giraffe.webp',
+    'assets/animals/horse.webp',
+    'assets/animals/lion.webp',
+    'assets/animals/monkey.webp',
+    'assets/animals/panda.webp',
+    'assets/animals/pig.webp',
+    'assets/animals/sheep.webp',
+    'assets/animals/tiger.webp',
+    'assets/animals/wolf.webp',
+    'assets/animals/zebra.webp',
+    'assets/animals/raccoon.webp',
+    'assets/animals/poodle.webp',
+    'assets/animals/parrot.webp',
+    'assets/animals/redpanda.webp',
+    'assets/animals/otter.webp',
+    'assets/animals/sloth.webp',
+    'assets/animals/capybara.webp',
+    'assets/animals/bat.webp',
+    'assets/animals/kangaroo.webp',
+    'assets/animals/armadillo.webp',
+    'assets/animals/octopus.webp',
+    'assets/animals/fish.webp',
+    'assets/animals/squirel.webp',

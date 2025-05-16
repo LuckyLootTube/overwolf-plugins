@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+
+    <!-- Preload your local images -->
+    <link rel="preload" as="image" href="assets/animals/bear.webp">
+    <link rel="preload" as="image" href="assets/animals/bunny.webp">
+    <link rel="preload" as="image" href="assets/animals/butterfly.webp">
+    <link rel="preload" as="image" href="assets/animals/cat.webp">
+    <link rel="preload" as="image" href="assets/animals/dog.webp">
+    <link rel="preload" as="image" href="assets/animals/dolphin.webp">
+    <link rel="preload" as="image" href="assets/animals/elephant.webp">
+    <link rel="preload" as="image" href="assets/animals/hatchhog.webp">
+    <link rel="preload" as="image" href="assets/animals/koala.webp">
+    <link rel="preload" as="image" href="assets/animals/penguin.webp">
+    <link rel="preload" as="image" href="assets/animals/turtle.webp">
+    <link rel="preload" as="image" href="assets/animals/hippopotamus.webp">
+    <link rel="preload" as="image" href="assets/animals/alligator.webp">
+    <link rel="preload" as="image" href="assets/animals/leopard.webp">
+    <link rel="preload" as="image" href="assets/animals/chicken.webp">
+    <link rel="preload" as="image" href="assets/animals/cow.webp">
+    <link rel="preload" as="image" href="assets/animals/deer.webp">
+    <link rel="preload" as="image" href="assets/animals/duck.webp">
+    <link rel="preload" as="image" href="assets/animals/frog.webp">
+    <link rel="preload" as="image" href="assets/animals/fox.webp">
+    <link rel="preload" as="image" href="assets/animals/giraffe.webp">
+    <link rel="preload" as="image" href="assets/animals/horse.webp">
+    <link rel="preload" as="image" href="assets/animals/lion.webp">
+    <link rel="preload" as="image" href="assets/animals/monkey.webp">
+    <link rel="preload" as="image" href="assets/animals/panda.webp">
+    <link rel="preload" as="image" href="assets/animals/pig.webp">
+    <link rel="preload" as="image" href="assets/animals/sheep.webp">
+    <link rel="preload" as="image" href="assets/animals/tiger.webp">
+    <link rel="preload" as="image" href="assets/animals/wolf.webp">
+    <link rel="preload" as="image" href="assets/animals/zebra.webp">
+    <link rel="preload" as="image" href="assets/animals/raccoon.webp">
+    <link rel="preload" as="image" href="assets/animals/poodle.webp">
+    <link rel="preload" as="image" href="assets/animals/parrot.webp">
+    <link rel="preload" as="image" href="assets/animals/redpanda.webp">
+    <link rel="preload" as="image" href="assets/animals/otter.webp">
+    <link rel="preload" as="image" href="assets/animals/sloth.webp">
+    <link rel="preload" as="image" href="assets/animals/capybara.webp">
+    <link rel="preload" as="image" href="assets/animals/bat.webp">
+    <link rel="preload" as="image" href="assets/animals/kangaroo.webp">
+    <link rel="preload" as="image" href="assets/animals/armadillo.webp">
+    <link rel="preload" as="image" href="assets/animals/octopus.webp">
+    <link rel="preload" as="image" href="assets/animals/fish.webp">
+    <link rel="preload" as="image" href="assets/animals/squirel.webp">
+
+  <style>
+    /* Make absolutely sure the window is see‐through */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent !important;
+      overflow: hidden;
+    }
+    
+    /* Hardware acceleration hints */
+    .hw-accelerated {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+      will-change: transform, opacity;
+    }
+    /* Removed flash animation and .flash-overlay CSS */
+  </style>
+</head>
+
+<body>
+  <!-- Load the client bundle globally -->
+<script src="./libs/streamerbot-client.js">
+</script>
+
+  <script>
+    // Now StreamerbotClient is available on window
+    window.client = new StreamerbotClient({
+      host: '127.0.0.1',
+      port: 8181
+    });
+    // ——— Discord RPC helper ———
+  function updateDiscordPresence(details, state) {
+  const payload = {
+    details,
+    state,
+    largeImageKey: 'ovw_logo',
+    largeImageText: 'Overwolf',
+    smallImageKey: 'app_icon',
+    smallImageText: 'AnimaLLT'
+  };
+  console.log('📡 Sending RPC payload:', payload);
+  fetch('http://127.0.0.1:30120/updatePresence', {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+})
+  .then(() => console.log('RPC fired (no-cors, opaque)'))
+  .catch(err => console.error('⚠️ RPC error:', err));
+  }
+    // 2) CONFIG + preload
+    const CONFIG = {
+      rewardTitle: 'AnimaLLT',
+      imageUrls: [
+        'assets/animals/bear.webp',
+        'assets/animals/bunny.webp',
+        'assets/animals/butterfly.webp',
+        'assets/animals/cat.webp',
+        'assets/animals/dog.webp',
+        'assets/animals/dolphin.webp',
+        'assets/animals/elephant.webp',
+        'assets/animals/hatchhog.webp',
+        'assets/animals/koala.webp',
+        'assets/animals/penguin.webp',
+        'assets/animals/hippopotamus.webp',
+        'assets/animals/alligator.webp',
+        'assets/animals/leopard.webp',
+        'assets/animals/chicken.webp',
+        'assets/animals/cow.webp',
+        'assets/animals/deer.webp',
+        'assets/animals/duck.webp',
+        'assets/animals/frog.webp',
+        'assets/animals/fox.webp',
+        'assets/animals/giraffe.webp',
+        'assets/animals/horse.webp',
+        'assets/animals/lion.webp',
+        'assets/animals/monkey.webp',
+        'assets/animals/panda.webp',
+        'assets/animals/pig.webp',
+        'assets/animals/sheep.webp',
+        'assets/animals/tiger.webp',
+        'assets/animals/wolf.webp',
+        'assets/animals/zebra.webp',
+        'assets/animals/raccoon.webp',
+        'assets/animals/poodle.webp',
+        'assets/animals/parrot.webp',
+        'assets/animals/redpanda.webp',
+        'assets/animals/otter.webp',
+        'assets/animals/sloth.webp',
+        'assets/animals/capybara.webp',
+        'assets/animals/bat.webp',
+        'assets/animals/kangaroo.webp',
+        'assets/animals/armadillo.webp',
+        'assets/animals/octopus.webp',
+        'assets/animals/fish.webp',
+        'assets/animals/squirel.webp',
+        'assets/animals/turtle.webp'
+      ],
+      seconds: 4, // Shorter display time
+      imageWidth: 150,
+      imageHeight: 150,
+      maxSimultaneousImages: 3,
+      debugPerformance: true,
+      useSimpleAnimations: true,
+      staggerDelay: 1,
+      showMultipleImages: false
+    };
+    
+    // Track active images
+    let activeImages = 0;
+    
+    // Add flag to track if we're currently processing a reward
+    let isProcessingReward = false;
+    
+    // More efficient random integer function
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    // Define preloadedImages array before using it
+    const preloadedImages = [];
+    
+    // More efficient image preloading
+    const preloadPromises = CONFIG.imageUrls.map(path => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          preloadedImages.push(img);
+          resolve();
+        };
+        img.onerror = reject;
+        img.src = path;
+      });
+    });
+    
+    // Wait for all images to load
+    Promise.all(preloadPromises).then(() => {
+      console.log('All images preloaded successfully');
+    }).catch(err => {
+      console.error('Error preloading images:', err);
+    });
+    
+    // Modify showImage function
+    function showImage() {
+      // Check if we've reached the maximum or if no images are loaded yet
+      if (activeImages >= CONFIG.maxSimultaneousImages || preloadedImages.length === 0) {
+        return;
+      }
+      
+      activeImages++;
+      
+      const imageIndex = randomInt(0, preloadedImages.length - 1);
+      const orig = preloadedImages[imageIndex];
+      const img = orig.cloneNode();
+      const w = CONFIG.imageWidth, h = CONFIG.imageHeight;
+      const x = Math.random() * (window.innerWidth - w);
+      const y = Math.random() * (window.innerHeight - h);
+      const r1 = Math.random()*90-45, r2 = r1+90;
+      
+      // Create a container for the image to improve compositing
+      const container = document.createElement('div');
+      Object.assign(container.style, {
+        position: 'fixed',
+        left: '50%',
+        top: '50%',
+        width: `${w}px`,
+        height: `${h}px`,
+        opacity: 0,
+        transition: 'opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        zIndex: '9999', 
+        pointerEvents: 'none',
+        willChange: 'opacity, transform',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden'
+      });
+      
+      // Set image styles
+      Object.assign(img.style, {
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        willChange: 'opacity, transform',
+        transform: 'translateZ(0)'
+      });
+      
+      // Append image to container, then container to body
+      container.appendChild(img);
+      document.body.appendChild(container);
+      
+      // Remove forced layout calculation unless strictly needed
+      // container.getBoundingClientRect();
+      
+      if (CONFIG.useSimpleAnimations) {
+        container.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px) scale(0.5)`;
+        requestAnimationFrame(() => {
+          container.style.opacity = '1';
+          container.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px) scale(1)`;
+        });
+        setTimeout(() => {
+          container.style.opacity = '0';
+          container.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px) scale(0.5)`;
+          container.addEventListener('transitionend', e => {
+            if (e.propertyName === 'opacity') {
+              container.remove();
+              activeImages--;
+            }
+          }, {once: true});
+        }, CONFIG.seconds*3000);
+      } else {
+        // Original more complex animation
+        container.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px) scale(0.5) rotate(${r1}deg) translateZ(0)`;
+        
+        requestAnimationFrame(() => {
+          container.style.opacity = '1';
+          container.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px) scale(1) rotate(${r1/2}deg) translateZ(0)`;
+        });
+        
+        setTimeout(() => {
+          container.style.opacity = '0';
+          container.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px) scale(0.5) rotate(${r2}deg) translateZ(0)`;
+          container.addEventListener('transitionend', e => {
+            if (e.propertyName === 'opacity') {
+              container.remove();
+              activeImages--;
+            }
+          }, {once: true});
+        }, CONFIG.seconds*3000);
+      }
+    }
+    
+    // Modify event listener to stagger multiple animations
+    window.client.on('Twitch.RewardRedemption', msg => {
+      try {
+        console.log("🏷️ raw redemption message:", msg);
+        // Check if the message has the expected structure
+        const rewardTitle = msg?.data?.reward?.title || msg?.data?.title;
+        // Grab the real Twitch username from the payload:
+        const viewer = msg.data.user_name || msg.data.user_login || 'a viewer';
+        
+        if (rewardTitle === CONFIG.rewardTitle && !isProcessingReward) {
+          isProcessingReward = true;
+          console.log('✨ Reward redeemed by', viewer, ':', rewardTitle);
+          // include the viewer’s name in your rich presence
+          updateDiscordPresence(
+         `🎉 ${viewer} claimed ${rewardTitle}!`,
+         `Thanks, ${viewer}!`
+        );
+
+          // Directly show image(s) without flash
+          showImage();
+          if (CONFIG.showMultipleImages) {
+            setTimeout(() => showImage(), CONFIG.staggerDelay);
+            setTimeout(() => showImage(), CONFIG.staggerDelay * 2);
+          }
+          setTimeout(() => {
+            isProcessingReward = false;
+            console.log('🔄 Resetting after reward');
+            //updateDiscordPresence('Idle', 'Waiting for rewards');
+          }, 10); //0.01 seconds
+          
+        }
+      } catch (error) {
+        console.error('Error handling reward redemption:', error);
+        isProcessingReward = false; // Reset flag in case of error
+      }
+    });
+
+    // Add Overwolf-specific optimizations
+    window.addEventListener('load', () => {
+      // Try to enable hardware acceleration explicitly
+      if (overwolf && overwolf.settings && overwolf.settings.setVideoCaptureFPS) {
+        // This might help with rendering performance
+        overwolf.settings.setVideoCaptureFPS(60);
+      }
+      
+      // Use requestIdleCallback to defer non-critical operations
+      (window.requestIdleCallback || window.setTimeout)(() => {
+        overwolf.windows.getCurrentWindow((res) => {
+          if (res.status === 'success') {
+            const id = res.window.id;
+            // Use screen width/height in physical pixels:
+            const fullW = screen.width * window.devicePixelRatio;
+            const fullH = screen.height * window.devicePixelRatio;
+            
+            // First set position
+            overwolf.windows.changePosition(id, 0, 0);
+            
+            // Then set size (still using deprecated method, but with a comment)
+            // Note: This is using a deprecated method, but it's the only option available
+            overwolf.windows.changeSize(id, fullW, fullH, (d) => {
+              if (d.status !== 'success') {
+                console.error('Self-resize failed:', d);
+              } else {
+                console.log('Overlay self-resized to', fullW, fullH);
+              }
+            });
+          } else {
+            console.error('getCurrentWindow failed:', res);
+          }
+        });
+      }, { timeout: 1000 });
+    });
+  </script>
+  <script>
+    // Performance monitoring (optional)
+    if (CONFIG.debugPerformance) {
+      let lastTime = performance.now();
+      let frames = 0;
+      let minFPS = 60;
+      
+      function checkFPS() {
+        frames++;
+        const now = performance.now();
+        const elapsed = now - lastTime;
+        
+        if (elapsed >= 1000) {
+          const fps = Math.round((frames * 1000) / elapsed);
+          minFPS = Math.min(minFPS, fps);
+          console.log(`Current FPS: ${fps}, Min FPS: ${minFPS}`);
+          frames = 0;
+          lastTime = now;
+        }
+        
+        requestAnimationFrame(checkFPS);
+      }
+      
+      requestAnimationFrame(checkFPS);
+    }
+  </script>
+</body>
+</html>
