@@ -21,9 +21,10 @@ Built by LuckyLootTube with the help of ChatGPT
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/YourUser/AnimaLLT-Overlay.git
-cd AnimaLLT-Overlay
+git clone https://github.com/LuckyLootTube/overwolf-plugins.git
+cd overwolf-plugins/AnimaLLT
 ```
+Basically, download the entire AnimaLLT folder.
 
 ### 2. Configure Streamer.bot
 
